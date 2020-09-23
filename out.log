@@ -1,0 +1,98 @@
+2020-09-16 17:51:53,255 [DEBUG]  Available web server routes: 
+/conversations/<conversation_id>/messages          POST                           add_message
+/conversations/<conversation_id>/tracker/events    POST                           append_events
+/webhooks/rasa                                     GET                            custom_webhook_RasaChatInput.health
+/webhooks/rasa/webhook                             POST                           custom_webhook_RasaChatInput.receive
+/webhooks/rest                                     GET                            custom_webhook_RestInput.health
+/webhooks/rest/webhook                             POST                           custom_webhook_RestInput.receive
+/model/test/intents                                POST                           evaluate_intents
+/model/test/stories                                POST                           evaluate_stories
+/conversations/<conversation_id>/execute           POST                           execute_action
+/domain                                            GET                            get_domain
+/                                                  GET                            hello
+/model                                             PUT                            load_model
+/model/parse                                       POST                           parse
+/conversations/<conversation_id>/predict           POST                           predict
+/conversations/<conversation_id>/tracker/events    PUT                            replace_events
+/conversations/<conversation_id>/story             GET                            retrieve_story
+/conversations/<conversation_id>/tracker           GET                            retrieve_tracker
+/status                                            GET                            status
+/model/predict                                     POST                           tracker_predict
+/model/train                                       POST                           train
+/conversations/<conversation_id>/trigger_intent    POST                           trigger_intent
+/model                                             DELETE                         unload_model
+/version                                           GET                            version
+2020-09-16 17:51:53,255 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-09-16 17:51:53,256 [DEBUG]  Using the default number of Sanic workers (1).
+2020-09-16 17:51:53,257 [INFO ]  Enabling coroutine debugging. Loop id 93841203495936.
+2020-09-16 17:51:53,516 [DEBUG]  Extracted model to '/tmp/tmpejfgi9v0'.
+2020-09-16 17:51:53,832 [DEBUG]  Loading the model ...
+2020-09-16 17:51:54,419 [DEBUG]  Finished loading the model.
+2020-09-16 17:51:54,419 [DEBUG]  Building tensorflow prediction graph...
+2020-09-16 17:51:58,848 [DEBUG]  Finished building tensorflow prediction graph.
+2020-09-16 17:51:58,850 [DEBUG]  Failed to load model for 'ResponseSelector'. Maybe you did not provide enough training data and no model was trained or the path '/tmp/tmpejfgi9v0/nlu' doesn't exist?
+2020-09-16 17:51:58,855 [DEBUG]  Connected to InMemoryTrackerStore.
+2020-09-16 17:51:58,855 [DEBUG]  Connected to lock store 'InMemoryLockStore'.
+2020-09-16 17:51:59,091 [DEBUG]  Extracted model to '/tmp/tmpea86m49u'.
+2020-09-16 17:51:59,093 [DEBUG]  Instantiated NLG to 'TemplatedNaturalLanguageGenerator'.
+2020-09-16 17:51:59,094 [INFO ]  Rasa server is up and running.
+2020-09-16 17:52:12,412 [DEBUG]  Creating a new tracker for id 'duy'.
+2020-09-16 17:52:12,415 [DEBUG]  Starting a new session for conversation ID 'duy'.
+2020-09-16 17:52:12,425 [DEBUG]  Action 'action_session_start' ended with events '[<rasa.core.events.SessionStarted object at 0x7f230024d4d0>, <rasa.core.events.ActionExecuted object at 0x7f2300242790>]'.
+2020-09-16 17:52:12,528 [DEBUG]  There is no trained model for 'ResponseSelector': The component is either not trained or didn't receive enough training data.
+2020-09-16 17:52:12,529 [DEBUG]  Adding following selector key to message property: default
+2020-09-16 17:52:12,529 [DEBUG]  Received user message 'hello' with intent '{'name': 'greet', 'confidence': 0.9999774694442749}' and entities '[]'
+2020-09-16 17:52:12,529 [DEBUG]  Logged UserUtterance - tracker now has 4 events.
+2020-09-16 17:52:12,530 [DEBUG]  Deleted lock for conversation 'duy'.
+2020-09-16 17:54:01,097 [DEBUG]  Available web server routes: 
+/conversations/<conversation_id>/messages          POST                           add_message
+/conversations/<conversation_id>/tracker/events    POST                           append_events
+/webhooks/rasa                                     GET                            custom_webhook_RasaChatInput.health
+/webhooks/rasa/webhook                             POST                           custom_webhook_RasaChatInput.receive
+/webhooks/rest                                     GET                            custom_webhook_RestInput.health
+/webhooks/rest/webhook                             POST                           custom_webhook_RestInput.receive
+/model/test/intents                                POST                           evaluate_intents
+/model/test/stories                                POST                           evaluate_stories
+/conversations/<conversation_id>/execute           POST                           execute_action
+/domain                                            GET                            get_domain
+/                                                  GET                            hello
+/model                                             PUT                            load_model
+/model/parse                                       POST                           parse
+/conversations/<conversation_id>/predict           POST                           predict
+/conversations/<conversation_id>/tracker/events    PUT                            replace_events
+/conversations/<conversation_id>/story             GET                            retrieve_story
+/conversations/<conversation_id>/tracker           GET                            retrieve_tracker
+/status                                            GET                            status
+/model/predict                                     POST                           tracker_predict
+/model/train                                       POST                           train
+/conversations/<conversation_id>/trigger_intent    POST                           trigger_intent
+/model                                             DELETE                         unload_model
+/version                                           GET                            version
+2020-09-16 17:54:01,098 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-09-16 17:54:01,098 [DEBUG]  Using the default number of Sanic workers (1).
+2020-09-16 17:54:01,099 [INFO ]  Enabling coroutine debugging. Loop id 94117501667344.
+2020-09-16 17:54:01,402 [DEBUG]  Extracted model to '/tmp/tmpjlancrwx'.
+2020-09-16 17:54:01,726 [DEBUG]  Loading the model ...
+2020-09-16 17:54:02,331 [DEBUG]  Finished loading the model.
+2020-09-16 17:54:02,332 [DEBUG]  Building tensorflow prediction graph...
+2020-09-16 17:54:06,936 [DEBUG]  Finished building tensorflow prediction graph.
+2020-09-16 17:54:06,937 [DEBUG]  Failed to load model for 'ResponseSelector'. Maybe you did not provide enough training data and no model was trained or the path '/tmp/tmpjlancrwx/nlu' doesn't exist?
+2020-09-16 17:54:06,943 [DEBUG]  Connected to InMemoryTrackerStore.
+2020-09-16 17:54:06,943 [DEBUG]  Connected to lock store 'InMemoryLockStore'.
+2020-09-16 17:54:07,190 [DEBUG]  Extracted model to '/tmp/tmp3a5qsu8k'.
+2020-09-16 17:54:07,192 [DEBUG]  Instantiated NLG to 'TemplatedNaturalLanguageGenerator'.
+2020-09-16 17:54:07,192 [INFO ]  Rasa server is up and running.
+2020-09-16 17:54:15,980 [DEBUG]  Creating a new tracker for id 'duy'.
+2020-09-16 17:54:15,982 [DEBUG]  Starting a new session for conversation ID 'duy'.
+2020-09-16 17:54:15,983 [DEBUG]  Action 'action_session_start' ended with events '[<rasa.core.events.SessionStarted object at 0x7f6ff02e5610>, <rasa.core.events.ActionExecuted object at 0x7f6ff044d3d0>]'.
+2020-09-16 17:54:16,035 [DEBUG]  There is no trained model for 'ResponseSelector': The component is either not trained or didn't receive enough training data.
+2020-09-16 17:54:16,035 [DEBUG]  Adding following selector key to message property: default
+2020-09-16 17:54:16,035 [DEBUG]  Received user message 'hello' with intent '{'name': 'greet', 'confidence': 0.9999774694442749}' and entities '[]'
+2020-09-16 17:54:16,036 [DEBUG]  Logged UserUtterance - tracker now has 4 events.
+2020-09-16 17:54:16,037 [DEBUG]  Deleted lock for conversation 'duy'.
+2020-09-16 17:55:51,271 [DEBUG]  Recreating tracker for id 'duy'
+2020-09-16 17:55:51,307 [DEBUG]  There is no trained model for 'ResponseSelector': The component is either not trained or didn't receive enough training data.
+2020-09-16 17:55:51,307 [DEBUG]  Adding following selector key to message property: default
+2020-09-16 17:55:51,307 [DEBUG]  Received user message 'hello' with intent '{'name': 'greet', 'confidence': 0.9999774694442749}' and entities '[]'
+2020-09-16 17:55:51,311 [DEBUG]  Logged UserUtterance - tracker now has 5 events.
+2020-09-16 17:55:51,312 [DEBUG]  Deleted lock for conversation 'duy'.

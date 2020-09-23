@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+button[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+button[type=submit]:hover {
+  background-color: #45a049;
+}
+
+button[type=button] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-top: -55px;
+  margin-right: -100px;
+}
+
+button[type=button]:hover {
+  background-color: #45a049;
+} 
+
+.input_container {
+  border-radius: 5px;
+  background-color: #f3f5f0;
+  padding: 20px;
+}
+
+.container_1 {
+  border-radius: 5px;
+  background-color: #55554f;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.input_row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+  margin: 0 auto
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* #button_container
+{
+    width:100%
+}         
+#button_form
+{
+    width:50% 100%;
+}
+#upload_btn
+{
+    width:50%;
+} */
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+</style>
+</head>
+<title>ARI CHATBOT DEMO</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="icon" href="static/ari.jpg">
+<body>
+<!-- <script src="static/script.js"></script>
+ -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<h2>Intents classification and Entities Extraction</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <div class="mb-3 mt-3">
+
+        <h3 class="mb-3" style="font-weight: 100">Upload files</h3>
+
+        <div class="form-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file_input" id="file_input" oninput="input_filename();">
+            <label id="file_input_label" class="custom-file-label" for="files">Select file</label>
+          </div>  
+          <div>
+            <button onclick="upload('{{ request.url }}');" id="upload_btn" class="btn btn-primary">Upload</button>
+          </div>
+        </div>
+        <form id="button_form" method="POST">
+          <p>
+            <input type="submit" value="Train" class="btn btn-primary"  onclick="javascript: form.action='/train';">
+            <input type="submit" value="Run" class="btn btn-primary"  onclick="javascript: form.action='/run';">
+            <input type="submit" value="Stop" class="btn btn-primary"  onclick="javascript: form.action='/stop';">
+          </p>
+        </form>  
+        <p>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+          {% endwith %}
+        </p> 
+        <button class="btn btn-primary d-none" id="loading_btn" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Uploading...
+        </button>
+        <button type="button" id="cancel_btn" class="btn btn-secondary d-none">Cancel upload</button>
+      </div>
+
+      <div id="progress_wrapper" class="d-none">
+        <label id="progress_status"></label>
+        <div class="progress mb-3">
+          <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div id="alert_wrapper"></div>
+    </div>
+  </div>
+</div>
+
+<!-- <h3>Select file(s) to upload</h3>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p> -->
+
+<div id = "input_container" class="input_container">
+  <form id = "my_form"> 
+  <!-- <div class="row">
+    <div class="col-25">
+      <label for="pipeline">Pipeline</label>
+    </div>
+    <div class="col-75">
+      <select id="pipeline" name="pipeline">
+        <option value="pipeline1">Pipeline 1</option>
+        <option value="pipeline2">Pipeline 2</option>
+        <option value="pipeline3">Pipeline 3</option>
+      </select>
+    </div>
+  </div> -->
+  <div class="input_row">
+    <div class="col-25">
+      <label for="sentences">Input sentences</label>
+    </div>
+    <div class="col-75">
+      <textarea id="sentences" name="sentences" placeholder="Write something.." style="height:200px"></textarea>
+    </div>
+  </div>
+  <div class="input_row">
+    <div class="col-75">
+        <button type="submit" value="Submit">Submit</button>
+    </div>
+
+    <div class="col-75">
+      <button type="button" value="Clear" onclick="document.getElementById('myDIV').innerHTML = ''">Clear</button>
+    </div>
+  </div>
+</form>
+
+<div style="overflow-y: scroll; height:200px;" id="myDIV" class="myDIV">
+
+</div>
+</div>
+<!-- <div id = "container_1" class="container_1">
+  <label for="pipeline">View Pipeline:</label>
+  
+  <select name="pipeline" id="pipeline" multiple>
+    <option value="pipeline1" id = 'pipeline1' onclick="display_pipeline()">pipeline1</option>
+    <option value="pipeline2" id = 'pipeline2' onclick="display_pipeline()">pipeline2</option>
+    <option value="pipeline3" id = 'pipeline3' onclick="display_pipeline()">pipeline3</option>
+  </select>
+
+  <div class="form-popup" id="myForm">
+    <form class="form-container">  
+      <button type="button" class="btn">Train</button>
+      <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+</div> -->
+
+<script src="static/index.js"></script>
+</body>
+<footer> <small>&copy; Copyright {{2020}}, ARI Technology</small> </footer> 
+</html>
