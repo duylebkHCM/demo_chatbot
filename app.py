@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify, abort, flash
-from train_nlu_commandline import train_nlu
+from train_model_commandline import train_model
 from werkzeug.utils import secure_filename
-from run_nlu_server import run_nlu
+from run_server import run_server
 import nest_asyncio
 from subprocess import Popen
 import asyncio
@@ -31,7 +31,7 @@ def index():
 def train():
   # loop.run_until_complete(train_data())
   print('DEBUG training...')
-  process = Popen(['python', 'train_nlu_commandline.py'])
+  process = Popen(['python', 'train_model_commandline.py'])
   while process.poll() is None:
     continue
   flash('Complete training')
@@ -46,7 +46,7 @@ def train():
 
 @app.route("/run", methods =["POST"])
 def run():
-  process = Popen(['python', 'run_nlu_server.py'])
+  process = Popen(['python', 'run_server.py'])
   flash('Start running nlu server')
   return redirect(url_for('index'))
 
@@ -54,7 +54,7 @@ def run():
 def stop():
   # conn = http.client.HTTPConnection("localhost",5005)
   # conn.close()
-  Popen(['python', 'run_nlu_server.py']).terminate()
+  Popen(['python', 'run_server.py']).terminate()
   import psutil
   from signal import SIGKILL
 
@@ -108,6 +108,7 @@ def upload_file():
 
         # flash('File(s) successfully uploaded')
         # return redirect(url_for('index'))
+
 
 
 if __name__ == "__main__":

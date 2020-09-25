@@ -151,7 +151,6 @@ function upload(url) {
     request.abort();
 
   })
-
 }
 
 // Function to update the input placeholder
@@ -204,20 +203,35 @@ function logSubmit(event) {
     get_reponse_from_rasa(result)
     event.preventDefault();
 }
+
+$("#send_btn").on("click", function(e) {
+  var text  = box_chat.elements.namedItem("message").value;
+  console.log("DEBUG text", text);
+
+  if (text == "" || $.trim(text) == "") {
+      e.preventDefault();
+      return false;
+  } else {
+      send_message(text, "user123");
+      e.preventDefault();
+      return false;
+  }
+})
     
 const container = document.getElementById("container");
 const form = document.getElementById("my_form"); 
 const log = document.getElementById("myDIV");
-// const pipeline1 = document.getElementById("pipeline1");
-
-// pipeline1.addEventListener("click", display_pipeline)
+const content = document.getElementById("text_res");
+const text_input = document.getElementById("text_input");
+const box_chat = document.getElementById("form-container");
 
 form.addEventListener("submit", logSubmit); 
+// box_chat.addEventListener("button", click_send);
 
 function get_input(){
-    const text = form.elements.namedItem("sentences").value
-    console.log("DEBUG  text", text)
-    return text
+    const text = form.elements.namedItem("sentences").value;
+    console.log("DEBUG  text", text);
+    return text;
 }
 
 function get_reponse_from_rasa(text){
@@ -237,7 +251,7 @@ function get_reponse_from_rasa(text){
               log.innerHTML += "<br>"
             }
         }
-    };
+  };
 
     xhttp.open("POST", "http://localhost:5005/model/parse");
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -245,3 +259,50 @@ function get_reponse_from_rasa(text){
     //replace Hello with input message
     xhttp.send(JSON.stringify({text: text}));
 };
+
+function setUserResponse(message) {
+  var UserResponse = '<img class="userAvatar" src=' + "./static/img/userAvatar.jpg" + '><p class="userMsg">' + message + ' </p><div class="clearfix"></div>';
+  $(UserResponse).appendTo(".chats").show("slow");
+
+  $(".usrInput").val("");
+  scrollToBottomOfResults();
+  showBotTyping();
+  $(".suggestions").remove();
+};
+
+function display_response(res) {  
+  for (i = 0; i < res.length; i++) {
+    if (res[i].hasOwnProperty("text")) {
+      content.innerHTML += "<b>Bot</b>:" + res[i].text + "<br>";
+    }
+  };
+
+  return false;
+}
+
+function send_message(message, user_id) {
+  content.innerHTML += "<b>User</b>:" + message + "<br>";
+
+  $.ajax({
+    url: "http://localhost:5005/webhooks/rest/webhook",
+    type: "POST", 
+    contentType: "application/json",
+    data: JSON.stringify({ message: message, sender: user_id }),
+    success: function(botResponse, status) {
+        console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
+        display_response(botResponse);
+    },
+    error: function(xhr, textStatus, errorThrown) {
+      console.log("Error from bot end: ", textStatus);
+    }
+  });
+  return false;
+}
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
