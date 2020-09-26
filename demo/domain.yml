@@ -1,42 +1,42 @@
 intents:
-    - お会計のお願い
-    - 揚げ物オーダー
-    - いらない
-    - タバコオーダー
-    - 20歳以上タッチ
-    - 袋オーダー
-    - 袋いらない
-    - 同意オーダー
-    - オーダー完了
+    - Request_for_payment
+    - Order_of_fried_food
+    - Refusal
+    - Order_cigarettes
+    - Touched
+    - Order_a_bag
+    - Refuse_the_bag
+    - Agree
+    - End_of_order
 
 actions:
-- お会計スタート
-- オーダー終了確認
-- タバコタッチ確認
-- 袋確認
-- 袋一緒か確認
-- お会計確認
-- お礼
+- Accounting_start
+- Confirmation_of_order_completion
+- Tobacco_touch_confirmation
+- Bag_confirmation
+- Check_if_the_bag_is_the_same
+- Accounting_confirmation
+- Say_thanks
 
 templates:
-    お会計スタート:
+    Accounting_start:
     - text: "はい。ご一緒に肉まんや揚げ物はいかがでしょうか？"
 
-    オーダー終了確認:
+    Confirmation_of_order_completion:
     - text: "はい。以上でよろしいですか？"
 
-    タバコタッチ確認:
+    Tobacco_touch_confirmation:
     - text: "はい。画面にタッチをお願いします。"
 
-    袋確認:
+    Bag_confirmation:
     - text: "ありがとうございます。袋は必要ですか？"
 
-    袋一緒か確認:
+    Check_if_the_bag_is_the_same:
     - text: "ありがとうございます。一緒の袋に入れますか？"
 
-    お会計確認:
+    Accounting_confirmation:
     - text: "お会計1200円になります。"
 
-    お礼:
+    Say_thanks:
     - text: "お預かりします。レシートのお返しです。ありがとうございました。"
     

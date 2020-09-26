@@ -1,56 +1,85 @@
-## intent:greet
-- hey
-- hello
-- hi
-- good morning
-- good evening
-- hey there
+## intent:Request_for_payment
+- お会計お願いします
+- お会計したいです
+- お会計
+- 支払いお願いします
+- 支払いしたいです
+- 支払い
 
-## intent:goodbye
-- bye
-- goodbye
-- see you around
-- see you later
+## intent:Order_of_fried_food
+- 唐揚げ棒をください
+- 唐揚げ棒ください
+- 唐揚げ棒がほしい
+- 唐揚げ棒
+- からあげクンをください
+- からあげクンください
+- からあげクンほしい
+- からあげクン
+- アメリカンドッグをください
+- 肉まんをください
+- あんまんをください
+- フライドチキンをください
 
-## intent:affirm
-- yes
-- indeed
-- of course
-- that sounds good
-- correct
+## intent:Refusal
+- いいえ、いりません
+- 必要ありません
+- いらないです
+- 大丈夫です
+- いらない
+- 結構です
+- だが断る
 
-## intent:deny
-- no
-- never
-- I don't think so
-- don't like that
-- no way
-- not really
+## intent:Order_cigarettes
+- タバコをください
+- タバコください
+- タバコがほしい
+- タバコほしい
+- マルボロをください
+- アメスピをください
+- クールをください
+- メビウスをください
+- ホープをください
+- ケントをください
 
-## intent:mood_great
-- perfect
-- very good
-- great
-- amazing
-- wonderful
-- I am feeling very good
-- I am great
-- I'm good
+## intent:Touched
+- タッチしました
+- タッチをしました
+- タッチした
+- タッチしたよ
+- タッチ
 
-## intent:mood_unhappy
-- sad
-- very sad
-- unhappy
-- bad
-- very bad
-- awful
-- terrible
-- not very good
-- extremely sad
-- so sad
+## intent:Order_a_bag
+- 袋ください
+- 袋をください
+- 袋ほしいです
+- 袋がほしいです
+- 袋くれ
+- 袋をくれ
+- 袋をちょうだい
+- 袋つけて
+- 袋をつけて
 
-## intent:bot_challenge
-- are you a bot?
-- are you a human?
-- am I talking to a bot?
-- am I talking to a human?
+## intent:Refuse_the_bag
+- 袋はいりません
+- 袋いりません
+- 袋は大丈夫です
+- 袋大丈夫です
+- 袋は結構です
+- 袋結構です
+- 袋は必要ないです
+- 袋必要ないです
+
+## intent:Agree
+- ください
+- はい、ください
+- ほしいです
+- お願いします
+- はい
+
+## intent:End_of_order
+- 以上です
+- よろしいです
+- 大丈夫です
+- 終わりです
+- これで全部です
+

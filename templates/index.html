@@ -208,8 +208,25 @@ label {
 <!-- <script src="static/script.js"></script>
  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+$("#send_btn").on("click", function(e) {
+  var text  = box_chat.elements.namedItem("message").value;
+  console.log("DEBUG text", text);
 
-<h2>Intents classification and Entities Extraction</h2>
+  if (text == "" || $.trim(text) == "") {
+      e.preventDefault();
+      return false;
+  } else {
+      send_message(text, "user123");
+      e.preventDefault();
+      return false;
+  }
+})
+    
+</script>
 
 <div>
   <button class="open-button" onclick="openForm()">Chat</button>
@@ -286,18 +303,6 @@ label {
 
 <div id = "input_container" class="input_container">
   <form id = "my_form"> 
-  <!-- <div class="row">
-    <div class="col-25">
-      <label for="pipeline">Pipeline</label>
-    </div>
-    <div class="col-75">
-      <select id="pipeline" name="pipeline">
-        <option value="pipeline1">Pipeline 1</option>
-        <option value="pipeline2">Pipeline 2</option>
-        <option value="pipeline3">Pipeline 3</option>
-      </select>
-    </div>
-  </div> -->
   <div class="input_row">
     <div class="col-25">
       <label for="sentences">Input sentences</label>
@@ -321,24 +326,6 @@ label {
 
 </div>
 </div>
-<!-- <div id = "container_1" class="container_1">
-  <label for="pipeline">View Pipeline:</label>
-  
-  <select name="pipeline" id="pipeline" multiple>
-    <option value="pipeline1" id = 'pipeline1' onclick="display_pipeline()">pipeline1</option>
-    <option value="pipeline2" id = 'pipeline2' onclick="display_pipeline()">pipeline2</option>
-    <option value="pipeline3" id = 'pipeline3' onclick="display_pipeline()">pipeline3</option>
-  </select>
-
-  <div class="form-popup" id="myForm">
-    <form class="form-container">  
-      <button type="button" class="btn">Train</button>
-      <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
-    </form>
-  </div>
-
-</div> -->
 <script src="static/index.js"></script>
 </body>
-<footer> <small>&copy; Copyright {{2020}}, ARI Technology, JSC</small> </footer> 
 </html>

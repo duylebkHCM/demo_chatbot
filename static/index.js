@@ -245,6 +245,7 @@ function get_reponse_from_rasa(text){
             var response = xhttp.responseText
             var json = JSON.parse(response)
             console.log('DEBUG json', json)
+            log.innerHTML=""
             for (x in json){
               log.innerHTML += "<b>" + x +"</b>" + ":";
               log.innerHTML += JSON.stringify(json[x]) + "<br>";
@@ -253,7 +254,7 @@ function get_reponse_from_rasa(text){
         }
   };
 
-    xhttp.open("POST", "http://localhost:5005/model/parse");
+    xhttp.open("POST", "http://115.78.234.111:5005/model/parse");
     xhttp.setRequestHeader("Content-Type", "application/json");
 
     //replace Hello with input message
@@ -282,9 +283,9 @@ function display_response(res) {
 
 function send_message(message, user_id) {
   content.innerHTML += "<b>User</b>:" + message + "<br>";
-
+  console.log(user_id)
   $.ajax({
-    url: "http://localhost:5005/webhooks/rest/webhook",
+    url: "http://115.78.234.111:5005/webhooks/rest/webhook",
     type: "POST", 
     contentType: "application/json",
     data: JSON.stringify({ message: message, sender: user_id }),

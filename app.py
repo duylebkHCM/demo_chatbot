@@ -2,16 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 from train_model_commandline import train_model
 from werkzeug.utils import secure_filename
 from run_server import run_server
-import nest_asyncio
 from subprocess import Popen
-import asyncio
 import http.client
 import os
-
-# nest_asyncio.apply()
-# from run_nlu_server import 
-
-# loop = asyncio.get_event_loop() 
 
 app = Flask(__name__)
 
@@ -29,31 +22,23 @@ def index():
 
 @app.route("/train", methods =["POST"])
 def train():
-  # loop.run_until_complete(train_data())
   print('DEBUG training...')
   process = Popen(['python', 'train_model_commandline.py'])
+  process2 = Popen(['python','gen.py'])
   while process.poll() is None:
     continue
   flash('Complete training')
   return redirect(url_for('index'))
 
-  # returned_value = os.system("gnome-terminal -x python train_nlu_commandline.py")
-  # print('DEBUG start running nlu server ...')
-  # # run_nlu()
-  # if returned_value == 0:
-  #   flash('Complete training')
-  #   return redirect(url_for('index'))
-
 @app.route("/run", methods =["POST"])
 def run():
   process = Popen(['python', 'run_server.py'])
+  process2 = Popen(['rasa','run','actions'])
   flash('Start running nlu server')
   return redirect(url_for('index'))
 
 @app.route("/stop", methods =["POST"])
 def stop():
-  # conn = http.client.HTTPConnection("localhost",5005)
-  # conn.close()
   Popen(['python', 'run_server.py']).terminate()
   import psutil
   from signal import SIGKILL
@@ -74,41 +59,21 @@ def allowed_file(filename):
 
 @app.route('/', methods=['POST', 'GET'])
 def upload_file():
-    if request.method == 'POST':
+  if request.method == "POST":
 
-        # if 'files[]' not in request.files:
-        #     flash('No file part')
-        #     return redirect(request.url)
+    file = request.files["file"]
 
-        # files = request.files.getlist('file_input')
+    print("File uploaded")
+    print(file)
+    filename = secure_filename(file.filename)
+    res = make_response(jsonify({"message": "File uploaded"}), 200)
+    if filename == 'domain.yml':
+      print(app.config['UPLOAD_PATH_2'])
+      file.save(os.path.join(app.config['UPLOAD_PATH_2'], filename))
+    elif filename in ['stories.md', 'nlu.md']:
+      file.save(os.path.join(app.config['UPLOAD_PATH_1'], filename))
 
-        # for file in files:
-        #     if file and allowed_file(file.filename):
-        #         filename = secure_filename(file.filename)
-        #         print('DEBUG filename', filename)
-        #         if filename == 'domain.yml':
-        #           file.save(os.path.join(app.config['UPLOAD_PATH_2'], filename))
-        #         elif filename in ['stories.md', 'nlu.md']:
-        #           file.save(os.path.join(app.config['UPLOAD_PATH_1'], filename))
-
-      if request.method == "POST":
-
-        file = request.files["file"]
-
-        print("File uploaded")
-        print(file)
-        filename = secure_filename(file.filename)
-        res = make_response(jsonify({"message": "File uploaded"}), 200)
-        if filename == 'domain.yml':
-          file.save(os.path.join(app.config['UPLOAD_PATH_2'], filename))
-        elif filename in ['stories.md', 'nlu.md']:
-          file.save(os.path.join(app.config['UPLOAD_PATH_1'], filename))
-
-        return res
-
-        # flash('File(s) successfully uploaded')
-        # return redirect(url_for('index'))
-
+    return res
 
 
 if __name__ == "__main__":

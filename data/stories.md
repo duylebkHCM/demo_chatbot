@@ -1,31 +1,30 @@
-## happy path
-* greet
-  - utter_greet
-* mood_great
-  - utter_happy
+## First contact
+* Request_for_payment
+  - Accounting_start
 
-## sad path 1
-* greet
-  - utter_greet
-* mood_unhappy
-  - utter_cheer_up
-  - utter_did_that_help
-* affirm
-  - utter_happy
+## Fried food story
+* Order_of_fried_food
+  - Confirmation_of_order_completion
+* Refusal
+  - Confirmation_of_order_completion
 
-## sad path 2
-* greet
-  - utter_greet
-* mood_unhappy
-  - utter_cheer_up
-  - utter_did_that_help
-* deny
-  - utter_goodbye
+## Tobacco story
+* Order_cigarettes
+  - Tobacco_touch_confirmation
+* Touched
+  - Bag_confirmation
+* End_of_order
+  - Bag_confirmation
 
-## say goodbye
-* goodbye
-  - utter_goodbye
+## Bag confirmation story
+* Order_a_bag
+  - Check_if_the_bag_is_the_same
+* Agree
+  - Accounting_confirmation
+* Refuse_the_bag
+  - Accounting_confirmation
 
-## bot challenge
-* bot_challenge
-  - utter_iamabot
+## ending
+* Agree
+  - Say_thanks
+
