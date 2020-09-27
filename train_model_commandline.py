@@ -7,12 +7,16 @@ sys.path.insert(1, os.path.dirname(os.path.abspath(__file__)))
 # This is exactly like issuing the command:
 #rasa run --enable-api -m models/nlu-20190515-144445.tar.gz
 
-def train_model(data = 'data/', config_path = 'config/config_1.yml', model_dir = 'models/', modules = 'pipeline1'):
+def train_model(data = 'data/', config_path = 'config/config.yml', model_dir = 'models/', domain = 'domain.yml', modules = 'pipeline1'):
     sys.argv.append('train')
 
     sys.argv.append('-c')
 
     sys.argv.append(config_path)
+
+    sys.argv.append('-d')
+
+    sys.argv.append(domain)
 
     sys.argv.append('--out')
 

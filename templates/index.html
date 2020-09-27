@@ -1,214 +1,21 @@
 <!doctype html>
 <html lang="en">
 <head>
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {
-  box-sizing: border-box;
-}
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical; 
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-.submit {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-.submit:hover {
-  background-color: #45a049;
-}
-
-.Clear {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  margin-top: -55px;
-  margin-right: -100px;
-}
-
-.Clear:hover {
-  background-color: #45a049;
-} 
-
-.input_container {
-  border-radius: 5px;
-  background-color: #f3f5f0;
-  padding: 20px;
-}
-
-.container_1 {
-  border-radius: 5px;
-  background-color: #55554f;
-  padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.input_row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-#myDIV {
-  width: 100%;
-  padding: 50px 0;
-  text-align: center;
-  background-color: lightblue;
-  margin-top: 20px;
-}
-
-#text_res {
-  width: 100%;
-  padding: 50px 0;
-  /* text-align: center; */
-  background-color: lightblue;
-  margin-top: 5px;
-}
-
-.form-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-* {box-sizing: border-box;}
-
-.open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
-}
-
-/* The popup chat - hidden by default */
-.chat-popup {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
-
-/* Add styles to the form container */
-.form-container {
-  max-width: 500px;
-  min-height: 500px;
-  padding: 10px;
-  background-color: white;
-}
-
-/* Full-width textarea */
-.form-container textarea {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  resize: none;
-  min-height: 30px;
-}
-
-/* When the textarea gets focus, do something */
-.form-container textarea:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Set a style for the submit/send button */
-.form-container .btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-}
-
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
-}
-
-/* .form-container .chats {
-    display: none;
-    max-height: 350px;
-    padding: 2px;
-    border-radius: 1px;
-    overflow-y: scroll;
-    margin-top: 1px;
-    transition: 0.2s;
-} */
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-
-</style>
+  <title>ARI CHATBOT DEMO</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <link rel="icon" href="static/imgs/ari.jpg">
+  
 </head>
-<title>ARI CHATBOT DEMO</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link rel="icon" href="static/imgs/ari.jpg">
 <body>
-<!-- <script src="static/script.js"></script>
- -->
+  <!-- <script src="static/script.js"></script>
+  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <h2>Intents classification and Entities Extraction</h2>
 
 <div>
@@ -220,7 +27,8 @@ label {
   
       <label for="message"><b>Message</b></label>
       <div style="overflow-y: scroll; height:300px;" id="text_res" class="text_res">
-
+        <div class="clearfix"></div>
+        
       </div>
       <textarea placeholder="Type message.." name="message" required style="height:50px;" id="text_input"></textarea>
       
@@ -237,7 +45,7 @@ label {
       <div class="mb-3 mt-3">
 
         <h3 class="mb-3" style="font-weight: 100">Upload files</h3>
-
+        <div><b>Upload stories.md, nlu.md, domain.yml</b></div>
         <div class="form-group mb-3">
           <div class="custom-file">
             <input type="file" class="custom-file-input" name="file_input" id="file_input" oninput="input_filename();">
@@ -247,11 +55,9 @@ label {
             <button onclick="upload('{{ request.url }}');" id="upload_btn" class="btn btn-primary">Upload</button>
           </div>
         </div>
-        <form id="button_form" method="POST">
+        <form id="button_form", method="POST">
           <p>
-            <input type="submit" value="Train" class="btn btn-primary"  onclick="javascript: form.action='/train';">
-            <input type="submit" value="Run" class="btn btn-primary"  onclick="javascript: form.action='/run';">
-            <input type="submit" value="Stop" class="btn btn-primary"  onclick="javascript: form.action='/stop';">
+            <input type="submit" value="Train" class="btn btn-primary"  onclick="show_alert('Start training model, please wait for few minutes...', 'success'); javascript:  form.action='/train';">
           </p>
         </form>  
         <p>
@@ -338,7 +144,7 @@ label {
   </div>
 
 </div> -->
-<script src="static/index.js"></script>
+<script src="static/js/index.js"></script>
 </body>
 <footer> <small>&copy; Copyright {{2020}}, ARI Technology, JSC</small> </footer> 
 </html>

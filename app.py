@@ -1,27 +1,29 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify, abort, flash
-from train_model_commandline import train_model
+from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify, abort, flash, current_app
 from werkzeug.utils import secure_filename
-from run_server import run_server
-import nest_asyncio
-from subprocess import Popen
-import asyncio
+from requests.sessions import session
+from http.client import responses
+from subprocess import Popen, PIPE
 import http.client
+import async_timeout
+import requests
+import aiohttp
+import asyncio
 import os
+import re
 
-# nest_asyncio.apply()
-# from run_nlu_server import 
-
-# loop = asyncio.get_event_loop() 
+loop = asyncio.get_event_loop() 
 
 app = Flask(__name__)
 
-app.secret_key = "secret key"
+app.secret_key = "le anh duy"
 path = os.getcwd()
 UPLOAD_PATH_1 = os.path.join(path, 'data')
+UPLOAD_PATH_3 = os.path.join(path, 'config')
 app.config['MAX_CONTENT_LENGTH'] = 1024*1024*5 #5MB
 app.config['UPLOAD_EXTENSIONS'] = set(['.md', '.yml'])
 app.config['UPLOAD_PATH_1'] = UPLOAD_PATH_1
 app.config['UPLOAD_PATH_2'] = path
+app.config['UPLOAD_PATH_3'] = UPLOAD_PATH_3
 
 @app.route("/")
 def index():
@@ -29,45 +31,32 @@ def index():
 
 @app.route("/train", methods =["POST"])
 def train():
-  # loop.run_until_complete(train_data())
   print('DEBUG training...')
+  # flash('Training...')
+  # subprocess.call(['python', 'train_model_commandline.py'])
   process = Popen(['python', 'train_model_commandline.py'])
-  while process.poll() is None:
-    continue
-  flash('Complete training')
+  final_output = []
+  final_error = []
+  ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
+  process_status = process.wait()
+
+  # while True:
+  #   output = process.stdout.readline()
+  #   error = process.stderr.readline()
+  #   new_out = ansi_escape.sub('', output.decode('utf8', errors='strict'))
+  #   print(new_out)
+  #   final_output.append(new_out)
+  #   new_err = ansi_escape.sub('', error.decode('utf8', errors='strict'))
+  #   final_error.append(new_err)
+  #   print(new_err)
+  #   return_code = process.poll()
+
+  #   if return_code is not None:
+  #     break 
+
+  # flash("Output: {}".format(",".join([i for i in final_output if len(i) > 0])))
+  # flash("Error{}".format(",".join([i for i in final_error if len(i) > 0])))
   return redirect(url_for('index'))
-
-  # returned_value = os.system("gnome-terminal -x python train_nlu_commandline.py")
-  # print('DEBUG start running nlu server ...')
-  # # run_nlu()
-  # if returned_value == 0:
-  #   flash('Complete training')
-  #   return redirect(url_for('index'))
-
-@app.route("/run", methods =["POST"])
-def run():
-  process = Popen(['python', 'run_server.py'])
-  flash('Start running nlu server')
-  return redirect(url_for('index'))
-
-@app.route("/stop", methods =["POST"])
-def stop():
-  # conn = http.client.HTTPConnection("localhost",5005)
-  # conn.close()
-  Popen(['python', 'run_server.py']).terminate()
-  import psutil
-  from signal import SIGKILL
-
-  for proc in psutil.net_connections(kind = 'inet'):
-    if proc.laddr[1] == 5005:
-      p = psutil.Process(proc.pid)
-      p.terminate()  
-  flash('Stop running nlu server')
-  return redirect(url_for('index'))
-
-@app.errorhandler(413)
-def too_large(e):
-    return "File is too large", 413
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['UPLOAD_EXTENSIONS']
@@ -101,15 +90,11 @@ def upload_file():
         res = make_response(jsonify({"message": "File uploaded"}), 200)
         if filename == 'domain.yml':
           file.save(os.path.join(app.config['UPLOAD_PATH_2'], filename))
-        elif filename in ['stories.md', 'nlu.md']:
+        elif filename in ['stories.md', 'nlu.md', 'responses.md']:
           file.save(os.path.join(app.config['UPLOAD_PATH_1'], filename))
-
+        elif filename == 'config.yml':
+          file.save(os.path.join(app.config['UPLOAD_PATH_3'], filename))
         return res
 
-        # flash('File(s) successfully uploaded')
-        # return redirect(url_for('index'))
-
-
-
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5000,debug=True,threaded=True)
+  app.run(host='0.0.0.0',port=5000,debug=True,threaded=True)
