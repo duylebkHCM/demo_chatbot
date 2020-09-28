@@ -1,0 +1,250 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select{
+
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; 
+}
+
+textarea{
+  /* float: left; */
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical; 
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+}
+
+.submit:hover {
+  background-color: #45a049;
+}
+
+.Clear {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  margin-top: -55px;
+  margin-left: 100px;
+}
+
+.Clear:hover {
+  background-color: #45a049;
+} 
+
+.input_container {
+  border-radius: 5px;
+  background-color: #f3f5f0;
+  padding: 20px;
+}
+
+.container_1 {
+  border-radius: 5px;
+  background-color: #55554f;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.input_row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: left;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+
+#text_res {
+  float: left;
+  width: 100%;
+  padding: 50px 0;
+  background-color: lightblue;
+  margin-top: 5px;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 500px;
+  min-height: 500px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 30px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.botAvatar {
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    float: left;
+    margin-left: 5px;
+    /* border: 2px solid  #2c53af ; */
+}
+.clearfix {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.botMsg {
+    float: left;
+    margin-top: 5px;
+    background: white;
+    color: black;
+    box-shadow: 2px 3px 9px 0px #9a82842e;
+    margin-left: 0.5em;
+    padding: 10px;
+    border-radius: 1.5em;
+    max-width: 60%;
+    min-width: 25%;
+    font-size: 13px;
+    word-wrap: break-word;
+    border-radius: 0 20px 20px 20px;
+}
+
+.userAvatar {
+    animation: animateElement linear 0.3s;
+    animation-iteration-count: 1;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    float: right;
+    margin-right: 5px;
+    /* border: 2px solid  #2c53af ; */
+}
+
+
+.userMsg {
+    animation: animateElement linear 0.2s;
+    animation-iteration-count: 1;
+    margin-top: 5px;
+    word-wrap: break-word;
+    padding: 10px;
+    float: right;
+    margin-right: 0.5em;
+    background: #5a17ee;
+    color: white;
+    margin-bottom: 0.15em;
+    font-size: 13px;
+    max-width: 65%;
+    min-width: 15%;
+    border-radius: 20px 0px 20px 20px;
+    box-shadow: 0px 2px 5px 0px #9a828454;
+}

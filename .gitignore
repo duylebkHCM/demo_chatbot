@@ -1,1 +1,3 @@
 __pycache__/
+models/
+BERT-base_mecab-ipadic-bpe-32k_whole-word-mask/

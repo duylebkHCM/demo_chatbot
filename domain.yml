@@ -1,3 +1,14 @@
+intents:
+    - Request_for_payment
+    - Order_of_fried_food
+    - Refusal
+    - Order_cigarettes
+    - Touched
+    - Order_a_bag
+    - Refuse_the_bag
+    - Agree
+    - End_of_order
+
 actions:
 - Accounting_start
 - Confirmation_of_order_completion
@@ -8,36 +19,25 @@ actions:
 - Say_thanks
 - action_custom_fallback
 
-intents:
-- Request_for_payment
-- Order_of_fried_food
-- Refusal
-- Order_cigarettes
-- Touched
-- Order_a_bag
-- Refuse_the_bag
-- Agree
-- End_of_order
-
 templates:
-  Accounting_confirmation:
-  - text: "\u304A\u4F1A\u8A081200\u5186\u306B\u306A\u308A\u307E\u3059\u3002"
-  Accounting_start:
-  - text: "\u306F\u3044\u3002\u3054\u4E00\u7DD2\u306B\u8089\u307E\u3093\u3084\u63DA\
-      \u3052\u7269\u306F\u3044\u304B\u304C\u3067\u3057\u3087\u3046\u304B\uFF1F"
-  Bag_confirmation:
-  - text: "\u3042\u308A\u304C\u3068\u3046\u3054\u3056\u3044\u307E\u3059\u3002\u888B\
-      \u306F\u5FC5\u8981\u3067\u3059\u304B\uFF1F"
-  Check_if_the_bag_is_the_same:
-  - text: "\u3042\u308A\u304C\u3068\u3046\u3054\u3056\u3044\u307E\u3059\u3002\u4E00\
-      \u7DD2\u306E\u888B\u306B\u5165\u308C\u307E\u3059\u304B\uFF1F"
-  Confirmation_of_order_completion:
-  - text: "\u306F\u3044\u3002\u4EE5\u4E0A\u3067\u3088\u308D\u3057\u3044\u3067\u3059\
-      \u304B\uFF1F"
-  Say_thanks:
-  - text: "\u304A\u9810\u304B\u308A\u3057\u307E\u3059\u3002\u30EC\u30B7\u30FC\u30C8\
-      \u306E\u304A\u8FD4\u3057\u3067\u3059\u3002\u3042\u308A\u304C\u3068\u3046\u3054\
-      \u3056\u3044\u307E\u3057\u305F\u3002"
-  Tobacco_touch_confirmation:
-  - text: "\u306F\u3044\u3002\u753B\u9762\u306B\u30BF\u30C3\u30C1\u3092\u304A\u9858\
-      \u3044\u3057\u307E\u3059\u3002"
+    Accounting_start:
+    - text: "はい。ご一緒に肉まんや揚げ物はいかがでしょうか？"
+
+    Confirmation_of_order_completion:
+    - text: "はい。以上でよろしいですか？"
+
+    Tobacco_touch_confirmation:
+    - text: "はい。画面にタッチをお願いします。"
+
+    Bag_confirmation:
+    - text: "ありがとうございます。袋は必要ですか？"
+
+    Check_if_the_bag_is_the_same:
+    - text: "ありがとうございます。一緒の袋に入れますか？"
+
+    Accounting_confirmation:
+    - text: "お会計1200円になります。"
+
+    Say_thanks:
+    - text: "お預かりします。レシートのお返しです。ありがとうございました。"
+    

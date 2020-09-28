@@ -1,12 +1,4 @@
-// $(function() {
-//     $('a#train_btn').bind('click', function() {
-//       $.getJSON('/train',
-//           function(data) {
-//         //do nothing
-//       });
-//       return false;
-//     });
-//   });
+//---------------------------------File upload Handler -----------------------------------------
 
 // Get a reference to the progress bar, wrapper & status label
 var progress = document.getElementById("progress");
@@ -43,11 +35,8 @@ function upload(url) {
 
   // Reject if the file input is empty & throw alert
   if (!input.value) {
-
     show_alert("No file selected", "warning")
-
     return;
-
   }
 
   // Create a new FormData instance
@@ -112,34 +101,23 @@ function upload(url) {
     if (request.status == 200) {
 
       show_alert(`${request.response.message}`, "success");
-
     }
     else {
-
       show_alert(`Error uploading file`, "danger");
-
     }
-
     reset();
-
   });
 
   // request error handler
   request.addEventListener("error", function (e) {
-
     reset();
-
     show_alert(`Error uploading file`, "warning");
-
   });
 
   // request abort handler
   request.addEventListener("abort", function (e) {
-
     reset();
-
     show_alert(`Upload cancelled`, "primary");
-
   });
 
   // Open and send the request
@@ -147,22 +125,17 @@ function upload(url) {
   request.send(data);
 
   cancel_btn.addEventListener("click", function () {
-
     request.abort();
-
   })
 }
 
 // Function to update the input placeholder
 function input_filename() {
-
   file_input_label.innerText = input.files[0].name;
-
 }
 
 // Function to reset the page
 function reset() {
-
   // Clear the input
   input.value = null;
 
@@ -186,7 +159,19 @@ function reset() {
 
   // Reset the input placeholder
   file_input_label.innerText = "Select file";
+}
 
+//------------------------------------------NLU Parse Handler-------------------------------------------
+function clear_text(event) {
+  console.log("DEBUG event", event.target.id);
+  if (event.target.id === "send_btn") {
+    // console.log("Hello")
+    text_input.value = "";
+  }
+  else{
+    form.elements.namedItem("sentences").value = "";
+  }
+  return false;
 }
 
 function display_pipeline() {
@@ -198,35 +183,18 @@ function closeForm() {
 }
 
 function logSubmit(event) {
-    console.log('DEBUG yes')
-    const result = get_input()
-    get_reponse_from_rasa(result)
+    console.log('DEBUG yes');
+    const result = get_input();
+    clear_text(event);
+    get_reponse_from_rasa(result);
     event.preventDefault();
 }
 
-$("#send_btn").on("click", function(e) {
-  var text  = box_chat.elements.namedItem("message").value;
-  console.log("DEBUG text", text);
-
-  if (text == "" || $.trim(text) == "") {
-      e.preventDefault();
-      return false;
-  } else {
-      send_message(text, "user123");
-      e.preventDefault();
-      return false;
-  }
-})
-    
 const container = document.getElementById("container");
 const form = document.getElementById("my_form"); 
 const log = document.getElementById("myDIV");
-const content = document.getElementById("text_res");
-const text_input = document.getElementById("text_input");
-const box_chat = document.getElementById("form-container");
 
 form.addEventListener("submit", logSubmit); 
-// box_chat.addEventListener("button", click_send);
 
 function get_input(){
     const text = form.elements.namedItem("sentences").value;
@@ -235,13 +203,11 @@ function get_input(){
 }
 
 function get_reponse_from_rasa(text){
-    var payload = " '{\"text\"  \"" + text + "\"}'"
 
     var xhttp = new XMLHttpRequest();
-
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            //custom action to process this.responseText 
+            //custom action to process this.responseText
             var response = xhttp.responseText
             var json = JSON.parse(response)
             console.log('DEBUG json', json)
@@ -256,13 +222,32 @@ function get_reponse_from_rasa(text){
 
     xhttp.open("POST", "http://115.78.234.111:5005/model/parse");
     xhttp.setRequestHeader("Content-Type", "application/json");
-
-    //replace Hello with input message
     xhttp.send(JSON.stringify({text: text}));
 };
 
+//---------------------------------------Chat box Handler----------------------------------------
+
+const content = document.getElementById("text_res");
+const text_input = document.getElementById("text_input");
+const box_chat = document.getElementById("form-container");
+
+$("#send_btn").on("click", function(e) {
+  var text  = box_chat.elements.namedItem("message").value;
+  console.log("DEBUG text", text);
+
+  if (text == "" || $.trim(text) == "") {
+      e.preventDefault();
+      return false;
+  } else {
+      send_message(text, "user123");
+      clear_text(e);
+      e.preventDefault();
+      return false;
+  }
+})
+
 function setUserResponse(message) {
-  var UserResponse = '<img class="userAvatar" src=' + "./static/img/userAvatar.jpg" + '><p class="userMsg">' + message + ' </p><div class="clearfix"></div>';
+  var UserResponse = '<img class="userAvatar" src=' + "static/img/userAvatar.jpg" + '><p class="userMsg">' + message + ' </p><div class="clearfix"></div>';
   $(UserResponse).appendTo(".chats").show("slow");
 
   $(".usrInput").val("");
@@ -272,12 +257,20 @@ function setUserResponse(message) {
 };
 
 function display_response(res) {  
-  for (i = 0; i < res.length; i++) {
-    if (res[i].hasOwnProperty("text")) {
-      content.innerHTML += "<b>Bot</b>:" + res[i].text + "<br>";
-    }
-  };
-
+  if (res.length < 1){
+    var fallbackMsg = "I am facing some issues, please try again";
+    content.innerHTML += '<img class = "botAvatar" src="static/imgs/botAvatar.png"/>' + '<p class="botMsg">' + fallbackMsg + '</p><div class="clearfix"></div>';
+  }
+  else{
+    for (i = 0; i < res.length; i++) {
+      if (res[i].hasOwnProperty("text")) {
+        content.innerHTML += '<img class = "botAvatar" src="static/imgs/botAvatar.png"/>' + '<p class="botMsg">' + res[i].text + '</p><div class="clearfix"></div>';
+      }
+      else if (res[i].hasOwnProperty("image")) {
+        
+      }
+    };
+  }
   return false;
 }
 
@@ -288,7 +281,8 @@ function send_message(message, user_id) {
     url: "http://115.78.234.111:5005/webhooks/rest/webhook",
     type: "POST", 
     contentType: "application/json",
-    data: JSON.stringify({ message: message, sender: user_id }),
+    data: JSON.stringify({message: message, sender: user_id}),
+    crossDomain: true,
     success: function(botResponse, status) {
         console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
         display_response(botResponse);
