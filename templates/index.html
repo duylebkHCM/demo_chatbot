@@ -8,7 +8,7 @@
   
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="{url_for('static',filename='style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
   <link rel="icon" href="{{url_for('static',filename='imgs/ari.jpg')}}">
   
 </head>
@@ -134,6 +134,6 @@ $("#send_btn").on("click", function(e) {
 </div>
 </div>
 
-<script src="{url_for('static',filename='index.js')}}"></script>
+<script src="{{url_for('static',filename='index.js')}}"></script>
 </body>
 </html>
