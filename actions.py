@@ -3,101 +3,101 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-class Accounting_start(Action):
-    def name(self) -> Text:
-        return "Accounting_start"
+# class Accounting_start(Action):
+#     def name(self) -> Text:
+#         return "Accounting_start"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: Accounting_start")
+#         dispatcher.utter_message(text="Action: Accounting_start")
 
-        return []
+#         return []
 
-class Confirmation_of_order_completion(Action):
-    def name(self) -> Text:
-        return "Confirmation_of_order_completion"
+# class Confirmation_of_order_completion(Action):
+#     def name(self) -> Text:
+#         return "Confirmation_of_order_completion"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: Confirmation_of_order_completion")
+#         dispatcher.utter_message(text="Action: Confirmation_of_order_completion")
 
-        return []
+#         return []
 
-class Tobacco_touch_confirmation(Action):
-    def name(self) -> Text:
-        return "Tobacco_touch_confirmation"
+# class Tobacco_touch_confirmation(Action):
+#     def name(self) -> Text:
+#         return "Tobacco_touch_confirmation"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: Tobacco_touch_confirmation")
+#         dispatcher.utter_message(text="Action: Tobacco_touch_confirmation")
 
-        return []
+#         return []
 
-class Bag_confirmation(Action):
-    def name(self) -> Text:
-        return "Bag_confirmation"
+# class Bag_confirmation(Action):
+#     def name(self) -> Text:
+#         return "Bag_confirmation"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: Bag_confirmation")
+#         dispatcher.utter_message(text="Action: Bag_confirmation")
 
-        return []
+#         return []
 
-class Check_if_the_bag_is_the_same(Action):
-    def name(self) -> Text:
-        return "Check_if_the_bag_is_the_same"
+# class Check_if_the_bag_is_the_same(Action):
+#     def name(self) -> Text:
+#         return "Check_if_the_bag_is_the_same"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: Check_if_the_bag_is_the_same")
+#         dispatcher.utter_message(text="Action: Check_if_the_bag_is_the_same")
 
-        return []
+#         return []
 
-class Accounting_confirmation(Action):
-    def name(self) -> Text:
-        return "Accounting_confirmation"
+# class Accounting_confirmation(Action):
+#     def name(self) -> Text:
+#         return "Accounting_confirmation"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: Accounting_confirmation")
+#         dispatcher.utter_message(text="Action: Accounting_confirmation")
 
-        return []
+#         return []
 
-class Say_thanks(Action):
-    def name(self) -> Text:
-        return "Say_thanks"
+# class Say_thanks(Action):
+#     def name(self) -> Text:
+#         return "Say_thanks"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: Say_thanks")
+#         dispatcher.utter_message(text="Action: Say_thanks")
 
-        return []
+#         return []
 
-class action_custom_fallback(Action):
-    def name(self) -> Text:
-        return "action_custom_fallback"
+# class action_custom_fallback(Action):
+#     def name(self) -> Text:
+#         return "action_custom_fallback"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Action: action_custom_fallback")
+#         dispatcher.utter_message(text="Action: action_custom_fallback")
 
-        return []
+#         return []
 
 class Custom_Fallback(Action):
     def name(self) -> Text:

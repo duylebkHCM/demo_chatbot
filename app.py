@@ -33,7 +33,6 @@ def index():
 def train():
   print('DEBUG training...')
   process = Popen(['python', 'train_model_commandline.py'])
-  process2 = Popen(['python','gen.py'])
   final_output = []
   final_error = []
   ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
