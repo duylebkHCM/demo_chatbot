@@ -8,27 +8,40 @@ intents:
     - Refuse_the_bag
     - Agree
     - End_of_order
+    - Thank
+    - Greet
+
 actions:
     - action_custom_fallback
-responses:
-    utter_accounting_start:
+    
+templates:
+    utter_Accounting_start:
     - text: "はい。ご一緒に肉まんや揚げ物はいかがでしょうか？"
 
-    utter_confirmation_of_order_completion:
+    utter_Confirmation_of_order_completion:
     - text: "はい。以上でよろしいですか？"
 
-    utter_tobacco_touch_confirmation:
+    utter_Tobacco_touch_confirmation:
     - text: "はい。画面にタッチをお願いします。"
 
-    utter_bag_confirmation:
+    utter_Bag_confirmation:
     - text: "ありがとうございます。袋は必要ですか？"
 
-    utter_check_if_the_bag_is_the_same:
+    utter_Check_if_the_bag_is_the_same:
     - text: "ありがとうございます。一緒の袋に入れますか？"
 
-    utter_accounting_confirmation:
+    utter_Accounting_confirmation:
     - text: "お会計1200円になります。"
 
-    utter_say_thanks:
+    utter_Say_thanks:
     - text: "お預かりします。レシートのお返しです。ありがとうございました。"
-    
+
+    utter_thanks:
+    - text: "どういたしまして"
+
+    utter_greet:
+    - text: "いらっしゃいませ"
+
+    utter_default:
+    - text: "よくわかりませんでした"
+
