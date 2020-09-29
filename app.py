@@ -23,7 +23,7 @@ app.config['MAX_CONTENT_LENGTH'] = 1024*1024*5 #5MB
 app.config['UPLOAD_EXTENSIONS'] = set(['.md', '.yml'])
 app.config['UPLOAD_PATH_1'] = UPLOAD_PATH_1
 app.config['UPLOAD_PATH_2'] = path
-app.config['UPLOAD_PATH_3'] = UPLOAD_PATH_3
+app.config['UPLOAD_PATH_3'] = path
 
 @app.route("/")
 def index():
@@ -62,4 +62,4 @@ def upload_file():
       return res
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0',port=6001,debug=True,threaded=True)
+  app.run(host='0.0.0.0',port=5000,debug=True,threaded=True)

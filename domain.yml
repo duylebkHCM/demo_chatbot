@@ -1,47 +1,38 @@
+session_config:
+  session_expiration_time: 0
+  carry_over_slots_to_new_session: true
 intents:
-    - Request_for_payment
-    - Order_of_fried_food
-    - Refusal
-    - Order_cigarettes
-    - Touched
-    - Order_a_bag
-    - Refuse_the_bag
-    - Agree
-    - End_of_order
-    - Thank
-    - Greet
-
+- Request_for_payment
+- Order_of_fried_food
+- Refusal
+- Order_cigarettes
+- Touched
+- Order_a_bag
+- Refuse_the_bag
+- Agree
+- End_of_order
+- Thank
+- Greet
+responses:
+  utter_Accounting_start:
+  - text: はい。ご一緒に肉まんや揚げ物はいかがでしょうか？
+  utter_Confirmation_of_order_completion:
+  - text: はい。以上でよろしいですか？
+  utter_Tobacco_touch_confirmation:
+  - text: はい。画面にタッチをお願いします。
+  utter_Bag_confirmation:
+  - text: ありがとうございます。袋は必要ですか？
+  utter_Check_if_the_bag_is_the_same:
+  - text: ありがとうございます。一緒の袋に入れますか？
+  utter_Accounting_confirmation:
+  - text: お会計1200円になります。
+  utter_Say_thanks:
+  - text: お預かりします。レシートのお返しです。ありがとうございました。
+  utter_thanks:
+  - text: どういたしまして
+  utter_greet:
+  - text: いらっしゃいませ
+  utter_default:
+  - text: よくわかりませんでした
 actions:
-    - action_custom_fallback
-    
-templates:
-    utter_Accounting_start:
-    - text: "はい。ご一緒に肉まんや揚げ物はいかがでしょうか？"
-
-    utter_Confirmation_of_order_completion:
-    - text: "はい。以上でよろしいですか？"
-
-    utter_Tobacco_touch_confirmation:
-    - text: "はい。画面にタッチをお願いします。"
-
-    utter_Bag_confirmation:
-    - text: "ありがとうございます。袋は必要ですか？"
-
-    utter_Check_if_the_bag_is_the_same:
-    - text: "ありがとうございます。一緒の袋に入れますか？"
-
-    utter_Accounting_confirmation:
-    - text: "お会計1200円になります。"
-
-    utter_Say_thanks:
-    - text: "お預かりします。レシートのお返しです。ありがとうございました。"
-
-    utter_thanks:
-    - text: "どういたしまして"
-
-    utter_greet:
-    - text: "いらっしゃいませ"
-
-    utter_default:
-    - text: "よくわかりませんでした"
-
+- action_custom_fallback

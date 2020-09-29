@@ -1,17 +1,29 @@
 language: jp
 pipeline:
-  - name: "JapaneseTokenizer"
-  - name: LexicalSyntacticFeaturizer
-  - name: "CRFEntityExtractor"
-  - name: "EntitySynonymMapper"
-  - name: "CountVectorsFeaturizer"
-    analyzer: "char_wb"
-    min_ngram: 1
-    max_ngram: 4
-  - name: "DIETClassifier"
-    epochs: 100
+  - name: HFTransformersNLP
+    model_weights: "BERT-base_mecab-ipadic-bpe-32k_whole-word-mask"
+    # model_weights: "bert-base-multilingual-cased"
+    model_name: "bert"
+  - name: LanguageModelTokenizer
+  - name: LanguageModelFeaturizer
+  - name: DIETClassifier
     batch_strategy: sequence
-    
+    random_seed: 5
+    intent_classification: True
+    entity_recognition: False
+    use_masked_language_model: True
+    finetuning_task: True
+    epochs: 200
+    number_of_transformer_layers: 4
+    transformer_size: 256
+    drop_rate: 0.15
+    weight_sparsity: 0.2
+    batch_size: [64, 256]
+    embedding_dimension: 500
+    hidden_layer_sizes:
+    text: [512, 128]
+
+
 policies:
   - name: "FallbackPolicy"
     nlu_threshold: 0.3

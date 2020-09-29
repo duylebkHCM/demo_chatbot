@@ -1,4 +1,4 @@
-<!-- 揚げ物yes、タバコyes、袋yes -->
+
 ## Convini Story 1
 * Request_for_payment
   - utter_Accounting_start
@@ -16,7 +16,6 @@
   - utter_Say_thanks
 
 
-<!-- 揚げ物yes、タバコyes、袋no -->
 ## Convini Story 2
 * Request_for_payment
   - utter_Accounting_start
@@ -32,7 +31,6 @@
   - utter_Say_thanks
 
 
-<!-- 揚げ物yes、タバコno、袋yes -->
 ## Convini Story 3
 * Request_for_payment
   - utter_Accounting_start
@@ -48,7 +46,6 @@
   - utter_Say_thanks
 
 
-<!-- 揚げ物yes、タバコno、袋no -->
 ## Convini Story 4
 * Request_for_payment
   - utter_Accounting_start
@@ -63,7 +60,7 @@
 
 
 
-<!-- 揚げ物no、タバコyes、袋yes -->
+
 ## Convini Story 5
 * Request_for_payment
   - utter_Accounting_start
@@ -81,7 +78,7 @@
   - utter_Say_thanks
 
 
-<!-- 揚げ物no、タバコyes、袋no -->
+
 ## Convini Story 6
 * Request_for_payment
   - utter_Accounting_start
@@ -97,7 +94,7 @@
   - utter_Say_thanks
 
 
-<!-- 揚げ物no、タバコno、袋yes -->
+
 ## Convini Story 7
 * Request_for_payment
   - utter_Accounting_start
@@ -113,7 +110,7 @@
   - utter_Say_thanks
 
 
-<!-- 揚げ物no、タバコno、袋no -->
+
 ## Convini Story 8
 * Request_for_payment
   - utter_Accounting_start
@@ -127,7 +124,7 @@
   - utter_Say_thanks
 
 
-<!-- お礼 -->
+
 ## Thanks Story
 * Thank
   - utter_thanks
@@ -137,4 +134,3 @@
 ## Greet Story
 * Greet
   - utter_greet
-

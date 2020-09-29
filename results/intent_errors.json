@@ -1,0 +1,10 @@
+[
+  {
+    "text": "大丈夫です",
+    "intent": "Refusal",
+    "intent_prediction": {
+      "name": "End_of_order",
+      "confidence": 0.44284456968307495
+    }
+  }
+]
