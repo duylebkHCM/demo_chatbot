@@ -220,9 +220,11 @@ function get_reponse_from_rasa(text){
         }
   };
 
-    xhttp.open("POST", "http://18.139.121.226:5005/model/parse");
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify({text: text}));
+    // xhttp.open("POST", "http://18.139.121.226:5005/model/parse");
+    xhttp.open("POST", "/parse_nlu");
+    xhttp.setRequestHeader("dataType", "json");
+    xhttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify({"text": text}));
 };
 
 //---------------------------------------Chat box Handler----------------------------------------
@@ -278,12 +280,14 @@ function send_message(message, user_id) {
   content.innerHTML += "<b>User</b>:" + message + "<br>";
   console.log(user_id)
   $.ajax({
-    url: "http://18.139.121.226:5005/webhooks/rest/webhook",
+    // url: "http://18.139.121.226:5005/webhooks/rest/webhook",
+    url : "/send",
     type: "POST", 
-    contentType: "application/json",
-    data: JSON.stringify({message: message, sender: user_id}),
-    crossDomain: true,
+    dataType: "json",
+    contentType: "application/json; charset=UTF-8",
+    data: JSON.stringify({"message": message, "sender": user_id}),
     success: function(botResponse, status) {
+        console.log("DEBUG data", botResponse)
         console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
         display_response(botResponse);
     },

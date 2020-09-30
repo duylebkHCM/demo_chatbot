@@ -10,6 +10,14 @@ sys.path.insert(1, os.path.dirname(os.path.abspath(__file__)))
 def train_model(data = 'data/', model_dir = 'models/', modules = 'pipeline1'):
     sys.argv.append('train')
 
+    sys.argv.append('--data')
+
+    sys.argv.append(data)
+
+    sys.argv.append('-c')
+
+    sys.argv.append('config2.yml')
+
     sys.argv.append('--out')
 
     sys.argv.append(model_dir)

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify, abort, flash, current_app
+from flask import Flask, render_template, request, json, redirect, url_for, make_response, jsonify, abort, flash, current_app
 from werkzeug.utils import secure_filename
 from requests.sessions import session
 from http.client import responses
@@ -60,6 +60,30 @@ def upload_file():
       elif filename == 'config.yml':
         file.save(os.path.join(app.config['UPLOAD_PATH_3'], filename))
       return res
+
+@app.route('/send', methods = ['POST', 'GET'])
+def send_message():
+  if request.method == 'POST':
+    data = json.loads(request.data)
+    r = requests.post('http://localhost:5005/webhooks/rest/webhook',\
+       json={"sender": data.get('sender'), "message": data.get('message')})
+
+    print("DEBUG r", r.json())
+    return make_response(jsonify(r.json()), 200)
+
+  return render_template("index.html")
+
+@app.route('/parse_nlu', methods = ['POST', 'GET'])
+def parse_nlu():
+  if request.method == 'POST':
+    data = json.loads(request.data)
+    r = requests.post('http://localhost:5005/model/parse',\
+       json={"text": data.get('text')})
+
+    # print("DEBUG r", r.json())
+    return make_response(jsonify(r.json()), 200)
+    
+  return render_template("index.html")
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0',port=5000,debug=True,threaded=True)

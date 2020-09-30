@@ -40,7 +40,7 @@ $("#send_btn").on("click", function(e) {
   <button class="open-button" onclick="openForm()">Chat</button>
 
   <div class="chat-popup" id="myForm">
-    <form class="form-container" id="form-container">
+    <form class="form-container" id="form-container" method="POST">
       <h1>Chat with bot</h1>
   
       <label for="message"><b>Message</b></label>
@@ -49,7 +49,7 @@ $("#send_btn").on("click", function(e) {
         
       </div>
       <textarea placeholder="Type message.." name="message" required style="height:50px;" id="text_input"></textarea>
-      
+       
       <button type="button" class="btn" id="send_btn">Send</button>
       <button type="button" class="btn cancel" onclick="closeForm()" id="close_btn">Close</button>
     </form>
@@ -109,7 +109,7 @@ $("#send_btn").on("click", function(e) {
 </div>
 
 <div id = "input_container" class="input_container">
-  <form id = "my_form"> 
+  <form id = "my_form" method="POST"> 
   <div class="input_row">
     <div class="col-25">
       <label for="sentences">Input sentences</label>
