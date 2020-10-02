@@ -219,8 +219,6 @@ function get_reponse_from_rasa(text){
             }
         }
   };
-
-    // xhttp.open("POST", "http://18.139.121.226:5005/model/parse");
     xhttp.open("POST", "/parse_nlu");
     xhttp.setRequestHeader("dataType", "json");
     xhttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -280,7 +278,6 @@ function send_message(message, user_id) {
   content.innerHTML += "<b>User</b>:" + message + "<br>";
   console.log(user_id)
   $.ajax({
-    // url: "http://18.139.121.226:5005/webhooks/rest/webhook",
     url : "/send",
     type: "POST", 
     dataType: "json",

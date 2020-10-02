@@ -80,7 +80,6 @@ def parse_nlu():
     r = requests.post('http://localhost:5005/model/parse',\
        json={"text": data.get('text')})
 
-    # print("DEBUG r", r.json())
     return make_response(jsonify(r.json()), 200)
     
   return render_template("index.html")
